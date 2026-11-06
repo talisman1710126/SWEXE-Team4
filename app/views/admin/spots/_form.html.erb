@@ -1,0 +1,23 @@
+<%= form_with model: [:admin, spot] do |f| %>
+  <% if spot.errors.any? %>
+    <ul style="color: red">
+      <% spot.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %>
+    </ul>
+  <% end %>
+
+  <div><%= f.label :name_ja, "名称（日本語）" %><br><%= f.text_field :name_ja %></div>
+  <div><%= f.label :name_en, "名称（英語）" %><br><%= f.text_field :name_en %></div>
+  <div>
+    <%= f.label :category, "種類" %><br>
+    <%= f.select :category, Spot::CATEGORY_LABELS.map { |key, label| [label, key] }, include_blank: "選択してください" %>
+  </div>
+  <div><%= f.label :description_en, "解説（英語）" %><br><%= f.text_area :description_en, rows: 5 %></div>
+  <div><%= f.label :access, "アクセス" %><br><%= f.text_field :access %></div>
+  <div>
+    <%= f.label :latitude, "緯度" %> <%= f.number_field :latitude, step: "any" %>
+    <%= f.label :longitude, "経度" %> <%= f.number_field :longitude, step: "any" %>
+    <p><small>Googleマップで地点を右クリック → 座標をクリックでコピー（左が緯度、右が経度）</small></p>
+  </div>
+
+  <%= f.submit "登録する" %>
+<% end %>

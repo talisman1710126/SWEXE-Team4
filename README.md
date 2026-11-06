@@ -1,5 +1,3 @@
-# SWEXE-Team4
-
 # Deep Hiroshima Stamp Rally 基本設計書
 
 - チーム番号：4

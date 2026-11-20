@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_06_050648) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_20_063621) do
   create_table "spots", force: :cascade do |t|
     t.string "name_ja"
     t.string "name_en"
@@ -22,4 +22,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_06_050648) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "visits", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "spot_id", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "visited_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spot_id"], name: "index_visits_on_spot_id"
+    t.index ["user_id", "spot_id"], name: "index_visits_on_user_id_and_spot_id", unique: true
+    t.index ["user_id"], name: "index_visits_on_user_id"
+  end
+
+  add_foreign_key "visits", "spots"
 end

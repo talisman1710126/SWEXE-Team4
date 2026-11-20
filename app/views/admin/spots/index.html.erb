@@ -1,0 +1,33 @@
+<h1>スポット管理</h1>
+<p style="color: green"><%= notice %></p>
+<p><%= link_to "新規登録", new_admin_spot_path %></p>
+
+<% if @spots.empty? %>
+  <p>スポットはまだ登録されていません。</p>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>名称（日本語）</th>
+        <th>名称（英語）</th>
+        <th>種類</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @spots.each do |spot| %>
+        <tr>
+          <td><%= spot.id %></td>
+          <td><%= spot.name_ja %></td>
+          <td><%= spot.name_en %></td>
+          <td><%= spot.category_label %></td>
+          <td>
+            <%= link_to "編集", edit_admin_spot_path(spot) %>
+            <%= button_to "削除", admin_spot_path(spot), method: :delete,
+                  form: { data: { turbo_confirm: "「#{spot.name_ja}」を削除しますか？" } } %>
+          </td>
+        </tr><% end %>
+    </tbody>
+  </table>
+<% end %>

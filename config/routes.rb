@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  root "public/spots#index"
+
+  namespace :public do
+    resources :spots, only: [:index, :show]
+  end
+
   namespace :admin do
     resources :spots, except: [:show]
   end

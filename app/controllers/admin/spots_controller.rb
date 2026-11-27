@@ -30,8 +30,13 @@ class Admin::SpotsController < ApplicationController
   end
 
   def destroy
-    @spot.destroy
-    redirect_to admin_spots_path, notice: "スポット「#{@spot.name_ja}」を削除しました", status: :see_other
+    if @spot.destroy
+      redirect_to admin_spots_path, notice: "スポット「#{@spot.name_ja}」を削除しました", status: :see_other
+    else
+      redirect_to admin_spots_path, alert: "スポット「#{@spot.name_ja}」を削除できませんでした", status: :see_other
+    end
+  rescue ActiveRecord::InvalidForeignKey
+    redirect_to admin_spots_path, alert: "スポット「#{@spot.name_ja}」には訪問の記録があるため削除できません", status: :see_other
   end
 
   private

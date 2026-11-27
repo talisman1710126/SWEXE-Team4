@@ -8,6 +8,6 @@ class Spot < ApplicationRecord
   validates :longitude, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }, allow_nil: true
 
   def category_label
-    CATEGORY_LABELS[category]
+    CATEGORY_LABELS.fetch(category, "未分類")
   end
 end

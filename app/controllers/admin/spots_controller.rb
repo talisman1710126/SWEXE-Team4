@@ -3,6 +3,8 @@ class Admin::SpotsController < ApplicationController
 
   def index
     @spots = Spot.order(:id)
+    # 例: { [1, "want_to_go"] => 3, [1, "visited"] => 2 }（1回のクエリでまとめて集計）
+    @counts = Visit.group(:spot_id, :status).count
   end
 
   def new

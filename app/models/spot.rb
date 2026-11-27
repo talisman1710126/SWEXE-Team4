@@ -1,4 +1,6 @@
 class Spot < ApplicationRecord
+  has_many :visits, dependent: :restrict_with_error
+
   enum :category, { dam: 0, bridge: 1, tunnel: 2, port: 3, other: 4 }, validate: true
 
   CATEGORY_LABELS = { "dam" => "ダム", "bridge" => "橋", "tunnel" => "トンネル", "port" => "港湾", "other" => "その他" }.freeze

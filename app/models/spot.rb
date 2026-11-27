@@ -2,6 +2,7 @@ class Spot < ApplicationRecord
   ALLOWED_IMAGE_CONTENT_TYPES = %w[image/jpeg image/png image/webp].freeze
   MAX_IMAGE_SIZE = 5.megabytes
 
+  # Registers coordinate columns for Geocoder queries; it does not geocode records automatically.
   geocoded_by :name_en, latitude: :latitude, longitude: :longitude
 
   has_one_attached :image

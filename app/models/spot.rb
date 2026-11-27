@@ -6,6 +6,7 @@ class Spot < ApplicationRecord
   geocoded_by :name_en, latitude: :latitude, longitude: :longitude
 
   has_one_attached :image
+  has_many :visits, dependent: :restrict_with_error
 
   enum :category, { dam: 0, bridge: 1, tunnel: 2, port: 3, other: 4 }, validate: true
 

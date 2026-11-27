@@ -19,5 +19,5 @@
     <p><small>Googleマップで地点を右クリック → 座標をクリックでコピー（左が緯度、右が経度）</small></p>
   </div>
 
-  <%= f.submit "登録する" %>
+  <%= f.submit spot.new_record? ? "登録する" : "更新する" %>
 <% end %>

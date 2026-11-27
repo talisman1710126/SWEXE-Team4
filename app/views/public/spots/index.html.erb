@@ -1,0 +1,58 @@
+<% content_for :title, "Infrastructure Spots" %>
+
+<main class="spots-page">
+  <header class="page-heading">
+    <p class="eyebrow">DISCOVER HIROSHIMA</p>
+    <h1>Infrastructure Spots</h1>
+    <p>Find hidden places and stories beyond the usual tourist destinations.</p>
+  </header>
+
+  <section class="spot-filters" aria-label="Filter spots">
+    <%= form_with url: public_spots_path, method: :get, data: { controller: "geolocation" } do %>
+      <div class="filter-field">
+        <%= label_tag :category, "Category" %>
+        <%= select_tag :category,
+              options_for_select([["All categories", ""]] + @categories.map { |category| [category.humanize, category] }, @selected_category),
+              id: "category" %>
+      </div>
+      <%= hidden_field_tag :latitude, @coordinates&.first, data: { geolocation_target: "latitude" } %>
+      <%= hidden_field_tag :longitude, @coordinates&.last, data: { geolocation_target: "longitude" } %>
+      <div class="filter-actions">
+        <%= submit_tag "Apply filter", class: "button button-secondary" %>
+        <button type="button" class="button button-primary" data-action="geolocation#sortByDistance" data-geolocation-target="button">
+          Sort by distance
+        </button>
+        <% if @coordinates %>
+          <%= link_to "Clear location", public_spots_path(category: @selected_category.presence), class: "clear-location" %>
+        <% end %>
+      </div>
+      <p class="location-status" role="status" aria-live="polite" data-geolocation-target="status">
+        <%= "Showing nearest spots first." if @coordinates %>
+      </p>
+    <% end %>
+  </section>
+
+  <% if @spots.empty? %>
+    <p class="empty-state">No spots found for this category yet.</p>
+  <% else %>
+    <section class="spot-grid" aria-label="Spots">
+      <% @spots.each do |spot| %>
+        <article class="spot-card" data-spot-id="<%= spot.id %>">
+          <%= link_to public_spot_path(spot), class: "spot-card-link" do %>
+            <% if spot.image.attached? %>
+              <%= image_tag spot.image, class: "spot-card-image", alt: spot.name_en %>
+            <% else %>
+              <div class="spot-image-placeholder" aria-hidden="true"><span><%= spot.category.humanize %></span></div>
+            <% end %>
+            <div class="spot-card-content">
+              <span class="category-pill"><%= spot.category.humanize %></span>
+              <h2><%= spot.name_en %></h2>
+              <p><%= spot.description_en.presence || "Discover this infrastructure landmark in Hiroshima." %></p>
+              <span class="card-cta">Explore spot <span aria-hidden="true">→</span></span>
+            </div>
+          <% end %>
+        </article>
+      <% end %>
+    </section>
+  <% end %>
+</main>

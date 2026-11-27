@@ -48,6 +48,6 @@ class Admin::SpotsController < ApplicationController
   end
 
   def spot_params
-    params.expect(spot: [:name_ja, :name_en, :category, :description_en, :access, :latitude, :longitude])
+    params.expect(spot: [:name_ja, :name_en, :category, :description_en, :access, :latitude, :longitude, :image])
   end
 end

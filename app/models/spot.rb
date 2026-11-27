@@ -1,4 +1,8 @@
 class Spot < ApplicationRecord
+  geocoded_by :name_en, latitude: :latitude, longitude: :longitude
+
+  has_one_attached :image
+
   enum :category, { dam: 0, bridge: 1, tunnel: 2, port: 3, other: 4 }, validate: true
 
   CATEGORY_LABELS = { "dam" => "ダム", "bridge" => "橋", "tunnel" => "トンネル", "port" => "港湾", "other" => "その他" }.freeze

@@ -24,6 +24,9 @@
   </head>
 
   <body>
+    <nav class="site-nav" aria-label="Main navigation">
+      <%= link_to "Infrastructure Spots", root_path, class: "site-brand" %>
+    </nav>
     <% if notice %><p style="color: green"><%= notice %></p><% end %>
     <% if alert %><p style="color: red"><%= alert %></p><% end %>
     <%= yield %>

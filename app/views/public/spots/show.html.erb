@@ -1,0 +1,46 @@
+<% content_for :title, @spot.name_en %>
+
+<main class="spot-detail">
+  <%= link_to "← All spots", public_spots_path, class: "back-link" %>
+
+  <article>
+    <% if @spot.image.attached? %>
+      <%= image_tag @spot.image, class: "detail-image", alt: @spot.name_en %>
+    <% else %>
+      <div class="detail-image-placeholder" aria-hidden="true"><span><%= @spot.category.humanize %></span></div>
+    <% end %>
+
+    <div class="detail-content">
+      <span class="category-pill"><%= @spot.category.humanize %></span>
+      <h1><%= @spot.name_en %></h1>
+      <p class="spot-name-ja"><%= @spot.name_ja %></p>
+
+      <section class="detail-section">
+        <h2>About this place</h2>
+        <p><%= @spot.description_en.presence || "More information about this spot is coming soon." %></p>
+      </section>
+
+      <% if @spot.access.present? %>
+        <section class="detail-section">
+          <h2>Access</h2>
+          <p><%= @spot.access %></p>
+        </section>
+      <% end %>
+
+      <section class="detail-section">
+        <h2>Location</h2>
+        <p><%= @spot.latitude %>, <%= @spot.longitude %></p>
+        <div class="map-frame">
+          <iframe
+            title="Map showing <%= @spot.name_en %>"
+            src="https://www.google.com/maps?q=<%= @spot.latitude %>,<%= @spot.longitude %>&amp;output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <%= link_to "Open in Google Maps", "https://www.google.com/maps/search/?api=1&query=#{@spot.latitude},#{@spot.longitude}", target: "_blank", rel: "noopener", class: "map-link" %>
+      </section>
+    </div>
+  </article>
+</main>

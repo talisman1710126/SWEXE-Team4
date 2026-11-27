@@ -8,3 +8,268 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+:root {
+  color-scheme: light;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #172a3a;
+  background: #f5f7f8;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem max(1.25rem, calc((100% - 1120px) / 2));
+  background: #fff;
+  border-bottom: 1px solid #e1e7eb;
+}
+
+.site-brand {
+  color: #145b55;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.clear-location,
+.back-link,
+.map-link {
+  color: #145b55;
+  font-weight: 600;
+}
+
+.spots-page,
+.spot-detail {
+  width: min(1120px, calc(100% - 2.5rem));
+  margin: 0 auto;
+  padding: 2.5rem 0 4rem;
+}
+
+.page-heading {
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  color: #b15d2a;
+  font-size: .75rem;
+  font-weight: 750;
+  letter-spacing: .12em;
+}
+
+.page-heading h1,
+.detail-content h1 {
+  margin: .25rem 0 .5rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.page-heading > p:last-child {
+  color: #5a6873;
+}
+
+.spot-filters {
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid #e1e7eb;
+  border-radius: .75rem;
+}
+
+.spot-filters form,
+.filter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: .75rem;
+}
+
+.filter-field {
+  display: grid;
+  gap: .4rem;
+}
+
+.filter-field label {
+  font-size: .875rem;
+  font-weight: 650;
+}
+
+.filter-field select {
+  min-width: 190px;
+  padding: .65rem .75rem;
+  border: 1px solid #aebbc3;
+  border-radius: .4rem;
+  background: white;
+  color: inherit;
+}
+
+.filter-actions {
+  gap: .65rem;
+}
+
+.button {
+  min-height: 42px;
+  padding: .6rem .9rem;
+  border: 0;
+  border-radius: .4rem;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+}
+
+.button:disabled {
+  cursor: wait;
+  opacity: .65;
+}
+
+.button-primary {
+  background: #145b55;
+  color: #fff;
+}
+
+.button-secondary {
+  background: #e7efed;
+  color: #145b55;
+}
+
+.location-status {
+  margin: .75rem 0 0;
+  color: #5a6873;
+  font-size: .875rem;
+}
+
+.spot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 1.25rem;
+}
+
+.spot-card {
+  overflow: hidden;
+  background: white;
+  border: 1px solid #e1e7eb;
+  border-radius: .75rem;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.spot-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px #172a3a18;
+}
+
+.spot-card-link {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+}
+
+.spot-card-image,
+.spot-image-placeholder {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.spot-image-placeholder,
+.detail-image-placeholder {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #dcece7, #b8d4cd);
+  color: #145b55;
+  font-weight: 700;
+}
+
+.spot-card-content {
+  padding: 1rem 1.1rem 1.2rem;
+}
+
+.category-pill {
+  display: inline-block;
+  padding: .25rem .55rem;
+  border-radius: 999px;
+  background: #e7efed;
+  color: #145b55;
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+.spot-card h2 {
+  margin: .65rem 0 .4rem;
+  font-size: 1.25rem;
+}
+
+.spot-card-content p,
+.detail-section p {
+  color: #5a6873;
+  line-height: 1.65;
+}
+
+.card-cta {
+  display: inline-block;
+  margin-top: .5rem;
+  color: #145b55;
+  font-weight: 700;
+}
+
+.empty-state {
+  padding: 2rem;
+  border-radius: .75rem;
+  background: white;
+  color: #5a6873;
+  text-align: center;
+}
+
+.spot-detail {
+  max-width: 880px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  text-decoration: none;
+}
+
+.detail-image,
+.detail-image-placeholder {
+  display: grid;
+  width: 100%;
+  height: clamp(220px, 42vw, 440px);
+  object-fit: cover;
+  border-radius: .75rem;
+}
+
+.detail-content {
+  padding: 1.5rem 0;
+}
+
+.spot-name-ja {
+  color: #5a6873;
+}
+
+.detail-section {
+  margin-top: 1.75rem;
+}
+
+.detail-section h2 {
+  font-size: 1.15rem;
+}
+
+.map-frame {
+  overflow: hidden;
+  height: 360px;
+  margin: 1rem 0 .75rem;
+  border-radius: .65rem;
+}
+
+.map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

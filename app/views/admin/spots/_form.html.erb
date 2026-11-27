@@ -12,6 +12,7 @@
     <%= f.select :category, Spot::CATEGORY_LABELS.map { |key, label| [label, key] }, include_blank: "選択してください" %>
   </div>
   <div><%= f.label :description_en, "解説（英語）" %><br><%= f.text_area :description_en, rows: 5 %></div>
+  <div><%= f.label :image, "画像" %><br><%= f.file_field :image, accept: "image/*" %></div>
   <div><%= f.label :access, "アクセス" %><br><%= f.text_field :access %></div>
   <div>
     <%= f.label :latitude, "緯度" %> <%= f.number_field :latitude, step: "any" %>
